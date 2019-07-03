@@ -7,6 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
+import LockIcon from '@material-ui/icons/Lock';
 
 const useStyles = makeStyles(theme => ({
   loginCont: {
@@ -21,6 +22,9 @@ const useStyles = makeStyles(theme => ({
   button: {
     width: "100%",
     marginTop: "20px"
+  },
+  title: {
+    textAlign: 'center'
   }
 }));
 
@@ -36,8 +40,9 @@ const LoginForm = props => {
 
   return (
     <div>
-      <Paper className={classes.loginCont}>
-        <Typography variant="h5" component="h3">
+      <div className={classes.loginCont}>
+        <Typography variant="h5" component="h3" className={classes.title}>
+          <LockIcon/><br/>
           Login
         </Typography>
         <form action="">
@@ -72,7 +77,7 @@ const LoginForm = props => {
             Don't have an account? <Link to="/register">Register</Link>
           </Box>
         </Typography>
-      </Paper>
+      </div>
     </div>
   );
 };

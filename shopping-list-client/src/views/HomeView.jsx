@@ -10,14 +10,28 @@ const HomeView = props => {
 
   useEffect(_ => {
     axios
-      .get(`${props.baseURL}/houses`)
-      .then(res => setHouses(res.data))
+      .get(`${props.baseURL}/users/me`)
+      .then(res => {
+        if (res.data.houses.length === 0) {
+          props.history.push("/pickhouse");
+        } else {
+          setHouses(res.data.houses);
+        }
+      })
       .catch(err => console.log(err));
   }, []);
 
   return (
     <div>
       <h1>Home</h1>
+      <button
+        onClick={e => {
+          localStorage.removeItem("jwt");
+          props.history.push("/login");
+        }}
+      >
+        logout
+      </button>
       <HouseList houses={houses} />
     </div>
   );
